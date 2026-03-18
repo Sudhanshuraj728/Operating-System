@@ -9,17 +9,16 @@ int main() {
 
     int bt[20], rt[20], at[20], ct[20], tat[20], wt[20], p[20];
 
-    // 👉 Added for averages
     float total_tat = 0, total_wt = 0;
 
     for (int i = 0; i < n; i++) {
         printf("Enter Arrival Time and Burst Time for P%d: ", i + 1);
         scanf("%d %d", &at[i], &bt[i]);
-        rt[i] = bt[i]; // Initialize remaining time
+        rt[i] = bt[i]; 
         p[i] = i + 1;
     }
 
-    // Initial sort by Arrival Time (Standard for RR)
+
     int temp;
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
@@ -32,7 +31,6 @@ int main() {
         }
     }
 
-    // Round Robin Logic
     while (completed < n) {
         int done_something = 0;
         for (int i = 0; i < n; i++) {
@@ -50,7 +48,7 @@ int main() {
                     tat[i] = ct[i] - at[i];
                     wt[i] = tat[i] - bt[i];
 
-                    // 👉 Add to totals
+                  
                     total_tat += tat[i];
                     total_wt += wt[i];
                 }
@@ -66,7 +64,7 @@ int main() {
         printf("\n%d\t%d\t%d\t%d\t%d\t%d", p[i], at[i], bt[i], ct[i], wt[i], tat[i]);
     }
 
-    // 👉 Print averages
+   
     printf("\n\nAverage Turnaround Time: %.2f", total_tat / n);
     printf("\nAverage Waiting Time: %.2f\n", total_wt / n);
 
